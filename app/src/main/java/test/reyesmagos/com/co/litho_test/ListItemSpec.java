@@ -20,9 +20,16 @@ public class ListItemSpec {
                                     @Prop int color,
                                     @Prop String title,
                                     @Prop String subtitle){
+
+        Component text = Text.create(c)
+                .text("TITLE")
+                .textSizeSp(60)
+                .textColor(Color.GREEN).build();
+
         return Column.create(c)
                 .paddingDip(YogaEdge.ALL, 16)
                 .backgroundColor(color)
+                .child(text)
                 .child(
                         Text.create(c)
                         .text(title)
