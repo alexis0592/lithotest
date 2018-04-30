@@ -13,11 +13,14 @@ import com.facebook.litho.LithoView;
 import com.facebook.litho.sections.SectionContext;
 import com.facebook.litho.sections.widget.RecyclerCollectionComponent;
 import com.facebook.litho.widget.LinearLayoutInfo;
+import com.facebook.litho.widget.Recycler;
 import com.facebook.litho.widget.RecyclerBinder;
 import com.facebook.litho.widget.Text;
 import com.facebook.litho.widget.VerticalGravity;
 
 public class MainActivity extends Activity {
+
+    private RecyclerBinder recyclerBinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +28,7 @@ public class MainActivity extends Activity {
 
         final ComponentContext componentContext = new ComponentContext(this);
 
-        Component textComponent = Text.create(componentContext)
+        /*Component textComponent = Text.create(componentContext)
                 .text("Hello World")
                 .textColor(Color.GREEN)
                 .textSizeDip(28)
@@ -36,6 +39,14 @@ public class MainActivity extends Activity {
         /*final LithoView lithoView = LithoView.create(
                 this /* context ,
                 ListItem.create(componentContext).build());*/
+
+        /*final RecyclerBinder recyclerBinder = new RecyclerBinder.Builder()
+                .layoutInfo(new LinearLayoutInfo(this, OrientationHelper.VERTICAL, false))
+                .build(componentContext);
+
+        Component recyclerComponent = Recycler.create(componentContext).binder(recyclerBinder).build();
+
+        addContentView();*/
 
         final Component component =
                 RecyclerCollectionComponent.create(componentContext)

@@ -1,7 +1,5 @@
 package test.reyesmagos.com.co.litho_test;
 
-import android.graphics.Color;
-
 import com.facebook.litho.Component;
 import com.facebook.litho.sections.Children;
 import com.facebook.litho.sections.SectionContext;
@@ -27,9 +25,8 @@ public class ListSectionSpec {
                     SingleComponentSection.create(c)
                     .key(String.valueOf(i))
                     .component(ListItem.create(c)
-                            .color(i % 2 == 0 ? Color.WHITE : Color.rgb(220, 220, 220))
-                            .title(i + " Hello World")
-                            .subtitle("Litho test")
+                            .name(i + " Hello World")
+                            .age("Litho test")
                             .build())
             );
         }

@@ -1,15 +1,15 @@
 package test.reyesmagos.com.co.litho_test;
 
-
-import android.graphics.Color;
-
 import com.facebook.litho.Column;
 import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
+import com.facebook.litho.Row;
 import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
+import com.facebook.litho.widget.Image;
 import com.facebook.litho.widget.Text;
+import com.facebook.yoga.YogaAlign;
 import com.facebook.yoga.YogaEdge;
 
 @LayoutSpec
@@ -17,29 +17,33 @@ public class ListItemSpec {
 
     @OnCreateLayout
     static Component onCreateLayout(ComponentContext c,
-                                    @Prop int color,
-                                    @Prop String title,
-                                    @Prop String subtitle){
+                                    @Prop String name,
+                                    @Prop String age){
 
-        Component text = Text.create(c)
-                .text("TITLE")
-                .textSizeSp(60)
-                .textColor(Color.GREEN).build();
-
-        return Column.create(c)
+        final Column componentLayout = Column.create(c)
                 .paddingDip(YogaEdge.ALL, 16)
-                .backgroundColor(color)
-                .child(text)
+                .flexGrow(1)
                 .child(
                         Text.create(c)
-                        .text(title)
-                        .textSizeSp(40)
+                                .text(name)
+                                .textSizeSp(30)
                 )
                 .child(
                         Text.create(c)
-                        .text(subtitle)
-                        .textSizeSp(20)
+                        .text(age)
+                        .textSizeSp(15)
                 )
                 .build();
+
+
+        return Row.create(c)
+                .paddingDip(YogaEdge.ALL, 16)
+                .child(Image.create(c)
+                        .drawableRes(R.drawable.ic_launcher_background)
+                        .widthDip(60)
+                        .heightDip(60)
+                        .alignSelf(YogaAlign.CENTER))
+                .child(componentLayout).build();
+
     }
 }
