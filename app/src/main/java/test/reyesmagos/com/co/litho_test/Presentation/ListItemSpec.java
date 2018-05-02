@@ -1,16 +1,26 @@
-package test.reyesmagos.com.co.litho_test;
+package test.reyesmagos.com.co.litho_test.Presentation;
 
+import android.content.Intent;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
+import com.facebook.litho.ClickEvent;
 import com.facebook.litho.Column;
 import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.Row;
+import com.facebook.litho.annotations.FromEvent;
 import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
+import com.facebook.litho.annotations.OnEvent;
 import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.widget.Image;
 import com.facebook.litho.widget.Text;
 import com.facebook.yoga.YogaAlign;
 import com.facebook.yoga.YogaEdge;
+
+import test.reyesmagos.com.co.litho_test.R;
 
 @LayoutSpec
 public class ListItemSpec {
@@ -25,13 +35,15 @@ public class ListItemSpec {
                 .flexGrow(1)
                 .child(
                         Text.create(c)
-                                .text(name)
-                                .textSizeSp(30)
+                        .text(name)
+                        .textSizeSp(30)
+                        .flexGrow(1)
                 )
                 .child(
                         Text.create(c)
                         .text(age)
                         .textSizeSp(15)
+                        .flexGrow(1)
                 )
                 .build();
 
@@ -43,7 +55,17 @@ public class ListItemSpec {
                         .widthDip(60)
                         .heightDip(60)
                         .alignSelf(YogaAlign.CENTER))
-                .child(componentLayout).build();
+                .child(componentLayout)
+                .clickHandler(ListItem.onClick(c))
+                .build();
 
+    }
+
+    @OnEvent(ClickEvent.class)
+    static void onClick(ComponentContext c, @FromEvent View view, @Prop View.OnClickListener listener){
+
+        listener.onClick(view);
+
+        //Toast.makeText(c, "Toast", Toast.LENGTH_LONG).show();
     }
 }
